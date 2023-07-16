@@ -2,21 +2,24 @@ import React, { useState } from 'react'
 import '../styles/App.css';
 
 function ToDo() {
-  return (<tr>
+  return (
+    <tr>
     <td>
-      <p>id</p>
+      <p>{id}</p>
     </td>
     <td>
       <input />
     </td>
     <td>
-      <p>createdAt</p>
+      <p>{createdAt}</p>
     </td>
-  </tr>)
+  </tr>
+    );
 }
 
 function App() {
-  const [todos, setTodos] = useState([{
+  const [todos, setTodos] = useState([
+    {
     id: 'todo1',
     createdAt: '20:30',
   }, {
@@ -25,15 +28,22 @@ function App() {
   }
   ]);
 
+  const reverseOrder = () => {
+    setTools(prevTodos => [...prevTodos].reverse());
+  };
+
   return (
     <div id="main">
-      <button>Reverse</button>
+      <button onclick={reverseOrder}>Reverse</button>
       <table>
         <tbody>
+    {todos.map(todo => (
+      <ToDo key={todo.id} id={todo.id} createdAt={todo.createAt} />
+  ))}
         </tbody>
       </table>
     </div>
-  )
+  );
 }
 
 
